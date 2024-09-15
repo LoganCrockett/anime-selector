@@ -1,10 +1,11 @@
+from lib.AddAnimeToListMenu import displayAddAnimeToListMenu
 '''
 Main Selection Menu
 @author LoganCrockett
 '''
 x = lambda y: print(y*y)
 def displayMainMenu():
-    options = [MenuOption("Add Anime to List", x), MenuOption("Mark Current as Done", x), MenuOption("Select Next to Watch", x)]
+    options = [MenuOption("Add Anime to List", displayAddAnimeToListMenu), MenuOption("Mark Current as Done", displayAddAnimeToListMenu), MenuOption("Select Next to Watch", displayAddAnimeToListMenu)]
     continueLoop = True
     
     while continueLoop:
@@ -24,7 +25,7 @@ def displayMainMenu():
             if selectedIndex < 0 or selectedIndex >= len(options):
                 print("Invalid choice. Please select a valid choice\n")
             else:
-                options[selectedIndex].onSelect(2)
+                options[selectedIndex].onSelect()
         except KeyboardInterrupt:
             continueLoop = False
         except ValueError:
