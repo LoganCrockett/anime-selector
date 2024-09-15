@@ -1,3 +1,5 @@
+from lib.AnimeRecord import AnimeRecord
+
 '''
 Add Anime to List Menu
 @author LoganCrockett
@@ -11,10 +13,11 @@ def displayAddAnimeToListMenu():
     while askForUserInput:
         try:
             userInput = input("Anime Name:")
-            print(userInput)
 
             if userInput == 'q' or userInput == 'Q':
                 askForUserInput = False
+            else:
+                AnimeRecord.addNewAnimeToWatch(userInput)
         except KeyboardInterrupt:
             askForUserInput = False
 
