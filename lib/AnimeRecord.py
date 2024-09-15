@@ -37,7 +37,9 @@ class AnimeRecord:
     '''
     @staticmethod
     def addNewAnimeToWatch(animeName: str):
-        AnimeRecord.toWatch.add(animeName.title())
+        formattedName = animeName.lower().title()
+        if formattedName not in AnimeRecord.watched:
+            AnimeRecord.toWatch.add(formattedName)
 
     '''
     Marks what is currently being watched as complete
