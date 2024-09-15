@@ -37,7 +37,18 @@ class AnimeRecord:
     '''
     @staticmethod
     def addNewAnimeToWatch(animeName: str):
-        AnimeRecord.toWatch.add(animeName.upper())
+        AnimeRecord.toWatch.add(animeName.title())
+
+    '''
+    Marks what is currently being watched as complete
+    '''
+    @staticmethod
+    def markCurrentAsComplete():
+        if len(AnimeRecord.currentWatch) > 0:
+            AnimeRecord.watched.append(AnimeRecord.currentWatch)
+            AnimeRecord.currentWatch = ""
+
+            print(AnimeRecord.watched[len(AnimeRecord.watched) - 1] + " is marked as complete.\n")
 
     '''
     Writes the state of this class to a json file

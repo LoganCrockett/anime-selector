@@ -6,8 +6,10 @@ Program to allow users to add anime to the list, and randomly select anime to wa
 @author LoganCrockett
 '''
 def animeSelector():
-    print("Welcome to the anime selector\n")
     AnimeRecord.loadData()
+    print("Welcome to the anime selector\n")
+    print("Currently being watched: " + AnimeRecord.currentWatch + "\n")
+
     displayMainMenu()
     AnimeRecord.writeRecordState()
 
