@@ -53,6 +53,14 @@ class AnimeRecord:
             print(AnimeRecord.watched[len(AnimeRecord.watched) - 1] + " is marked as complete.\n")
 
     '''
+    Set the current item being watched
+    '''
+    @staticmethod
+    def setCurrentWatch(itemName: str):
+        AnimeRecord.toWatch.remove(itemName)
+        AnimeRecord.currentWatch = itemName
+
+    '''
     Writes the state of this class to a json file
     '''
     @staticmethod
