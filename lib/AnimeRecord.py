@@ -38,7 +38,7 @@ class AnimeRecord:
     @staticmethod
     def addNewAnimeToWatch(animeName: str):
         formattedName = animeName.lower().title()
-        if formattedName not in AnimeRecord.watched:
+        if formattedName not in AnimeRecord.watched and formattedName != AnimeRecord.currentWatch:
             AnimeRecord.toWatch.add(formattedName)
 
     '''
