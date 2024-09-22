@@ -7,6 +7,10 @@ Select Anime to Watch Menu
 @author LoganCrockett
 '''
 def displaySelectAnimeToWatchMenu():
+    if len(AnimeRecord.currentWatch) > 0:
+        print("You are currently watching '" + AnimeRecord.currentWatch + "'. Please mark it as complete before selecting a new anime.\n")
+        return
+    
     toWatchList = list(AnimeRecord.toWatch)
     toSelectList = list()
     if len(toWatchList) == 0:
