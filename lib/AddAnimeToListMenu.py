@@ -1,4 +1,5 @@
 from lib.AnimeRecord import AnimeRecord
+from lib.ClearScreen import clearScreen
 
 '''
 Add Anime to List Menu
@@ -21,4 +22,4 @@ def displayAddAnimeToListMenu():
         except KeyboardInterrupt:
             askForUserInput = False
 
-    print("\n")
+    clearScreen()

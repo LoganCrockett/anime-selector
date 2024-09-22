@@ -1,6 +1,6 @@
 from lib.AnimeRecord import AnimeRecord
+from lib.ClearScreen import clearScreen
 import random
-from os import system, name
 
 '''
 Select Anime to Watch Menu
@@ -72,10 +72,3 @@ def displaySelectAnimeToWatchMenu():
     print("Current watch is now: " + AnimeRecord.currentWatch)
     print()
     return
-
-# "Generously donated" from https://www.geeksforgeeks.org/clear-screen-python/
-def clearScreen():
-    if name == "nt":
-        system("cls")
-    else:
-        system("clear")
