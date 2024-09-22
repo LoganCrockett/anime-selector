@@ -50,8 +50,6 @@ class AnimeRecord:
             AnimeRecord.watched.append(AnimeRecord.currentWatch)
             AnimeRecord.currentWatch = ""
 
-            print(AnimeRecord.watched[len(AnimeRecord.watched) - 1] + " is marked as complete.\n")
-
     '''
     Set the current item being watched
     '''

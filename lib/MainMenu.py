@@ -1,12 +1,13 @@
 from lib.AddAnimeToListMenu import displayAddAnimeToListMenu
 from lib.AnimeRecord import AnimeRecord
 from lib.SelectAnimeToWatch import displaySelectAnimeToWatchMenu
+from lib.MarkCurrentAsComplete import displayMarkCurrentAsCompleteMenu
 '''
 Main Selection Menu
 @author LoganCrockett
 '''
 def displayMainMenu():
-    options = [MenuOption("Add Anime to List", displayAddAnimeToListMenu), MenuOption("Mark Current as Complete", AnimeRecord.markCurrentAsComplete), MenuOption("Select Next to Watch", displaySelectAnimeToWatchMenu)]
+    options = [MenuOption("Add Anime to List", displayAddAnimeToListMenu), MenuOption("Mark Current as Complete", displayMarkCurrentAsCompleteMenu), MenuOption("Select Next to Watch", displaySelectAnimeToWatchMenu)]
     continueLoop = True
     
     while continueLoop:
