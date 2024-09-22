@@ -1,6 +1,6 @@
 from lib.AnimeRecord import AnimeRecord
 from lib.ClearScreen import clearScreen
-import random
+import random, msvcrt
 
 '''
 Select Anime to Watch Menu
@@ -28,40 +28,48 @@ def displaySelectAnimeToWatchMenu():
         clearScreen()
         print("Please select three items to put up for selection (Use W/S to navigate)")
         while len(toSelectList) < 3:
-            indicesToDisplay = []
-            if len(toWatchList) > 2:
-                if userIndex == 0:
-                    indicesToDisplay = [0, 1, 2]
-                elif userIndex == len(toWatchList) - 1:
-                    indicesToDisplay = [len(toWatchList) - 3, len(toWatchList) - 2, len(toWatchList) - 1]
+                indicesToDisplay = []
+                if len(toWatchList) > 2:
+                    if userIndex == 0:
+                        indicesToDisplay = [0, 1, 2]
+                    elif userIndex == len(toWatchList) - 1:
+                        indicesToDisplay = [len(toWatchList) - 3, len(toWatchList) - 2, len(toWatchList) - 1]
+                    else:
+                        indicesToDisplay = [userIndex - 1, userIndex, userIndex + 1]
                 else:
-                    indicesToDisplay = [userIndex - 1, userIndex, userIndex + 1]
-            else:
-                # If we end up selecting, and the list dips below three
-                indicesToDisplay = list(range(len(toWatchList)))
-            
-            for i in indicesToDisplay:
-                print("-> " if i == userIndex else "", toWatchList[i])
-            
-            try:
-                userInput = input()
+                    # If we end up selecting, and the list dips below three
+                    indicesToDisplay = list(range(len(toWatchList)))
+                
+                for i in indicesToDisplay:
+                    print("-> " if i == userIndex else "", toWatchList[i])
 
-                # Pressed Enter
-                if len(userInput) == 0:
-                    toSelectList.append(toWatchList.pop(userIndex))
+                try:
+                    # See https://stackoverflow.com/a/61560100 for getting arrow keys on Windows
+                    # Block here so that we don't constantly print out the options
+                    while msvcrt.kbhit() == False:
+                        pass
+                    userInput = msvcrt.getch()
 
-                    if userIndex > len(toWatchList) - 1:
-                        userIndex -= 1
-                elif userInput.upper() == "W":
-                    userIndex = len(toWatchList) - 1 if userIndex == 0 else userIndex - 1
-                elif userInput.upper() == "S":
-                    userIndex = (userIndex + 1) % len(toWatchList)
-            except KeyboardInterrupt:
-                # Just exit; stop processing
-                print("Exiting selection and returning to main menu\n")
-                return
-            finally:
-                clearScreen()
+                    # Read second character to get arrow
+                    if userInput == b'\x00':
+                        userInput = msvcrt.getch()
+
+                    # Pressed Enter
+                    if userInput == b'\r':
+                        toSelectList.append(toWatchList.pop(userIndex))
+
+                        if userIndex > len(toWatchList) - 1:
+                            userIndex -= 1
+                    elif userInput == b'H':
+                        userIndex = len(toWatchList) - 1 if userIndex == 0 else userIndex - 1
+                    elif userInput == b'P':
+                        userIndex = (userIndex + 1) % len(toWatchList)
+                except KeyboardInterrupt:
+                    # Just exit; stop processing
+                    print("Exiting selection and returning to main menu\n")
+                    return
+                finally:
+                    clearScreen()
 
 
     print("Current items up for selection: " + str(toSelectList))
